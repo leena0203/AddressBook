@@ -65,6 +65,15 @@ public class AddressBook {
 		}
 
 	}
+	public void deleteContact(String name) {
+		String x = "";
+		for(Contact contact : addressBook) {
+			x = contact.getFirstName() + contact.getLastName();
+			if(name.equals(x)) {
+				addressBook.remove(contact);
+			}
+		}
+	}
     public static void main(String[] args) {
     	
     	
@@ -75,6 +84,7 @@ public class AddressBook {
 	    	sc.nextLine();
 	    	System.out.println("1.Add a new Contact");
 	    	System.out.println("2.Edit the contact details");
+	    	System.out.println("3.Delete the contact");
 	    	int choice = sc.nextInt();
 	    	sc.nextLine();
 	    	switch(choice) {
@@ -103,14 +113,24 @@ public class AddressBook {
 	    		break;
 	    	case 2:
 	    		System.out.println("Enter the contact name");
-	    		String name=sc.nextLine();
-	    		addressBook.editContact(name);
+	    		String name = sc.nextLine();
+	    		addressBook.editContact(name);//edited Contact
+	    		break;
+	    	case 3:
+	    		System.out.println("Enter the contact name");
+	    		String  contactName = sc.nextLine();
+	    		addressBook.deleteContact(contactName);//deleted Contact
 	    		break;
 	    	default:
 	    		break;
 	    	} 
 	    	System.out.println("Do you wish to continue(Y/N)?");
-	    }while(sc.next().charAt(0)=='Y');
+	    }
+            while(sc.next().charAt(0)=='Y');
 	    System.out.println("Thank You");
-	}
+	    ArrayList<Contact> contactList = addressBook.getAddressBook();
+	    for(Contact contact : contactList) {
+	    	System.out.println(contact);//Display of Contact List in AddressBook
+	    }
+    }
 }
