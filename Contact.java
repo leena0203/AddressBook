@@ -58,7 +58,7 @@ public class Contact {
 		this.emailId = emailId;
 	}
 	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
-			       String emailId) {
+			       long phoneNumber, String emailId) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
