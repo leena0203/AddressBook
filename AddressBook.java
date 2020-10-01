@@ -22,6 +22,7 @@ public class AddressBook {
 		for(Contact contact : addressBook) {
 			x = contact.getFirstName() + contact.getLastName();
 			if(name.equals(x)) {
+				
 				System.out.println("1.Change the address");
 				System.out.println("2.Change the city");
 				System.out.println("3.Change the state");
@@ -59,12 +60,16 @@ public class AddressBook {
 				break;
 				}	
 			}
+			
+		
 			else {
 				 System.out.println("No such contact exist");
 			}
 		}
-
+	
 	}
+
+	
 	public void deleteContact(String name) {
 		String x = "";
 		for(Contact contact : addressBook) {
