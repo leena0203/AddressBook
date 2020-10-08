@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressMain extends AddressBook {
 public static Map<String,AddressBook> addressBookMap;
@@ -18,6 +19,28 @@ public static Map<String,AddressBook> addressBookMap;
 	}
 	public List<Contact> addressBook = new ArrayList<Contact>();
 	
+	public void searchContactByCity(String name, String city) {
+		List<Contact> list = new ArrayList<Contact>();
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getAddressBook().stream().filter(contactObj-> contactObj.getCity().equals(city))
+					.filter(contactObj->(contactObj.getFirstName()+" "+contactObj.getLastName())
+					.equals(name)).collect(Collectors.toList());
+		}
+		for(Contact contactObj : list) {
+			System.out.println(contactObj);
+		}
+	}	
+	public void searchConatctByState(String name, String state) {
+		List<Contact> list = new ArrayList<Contact>();
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getAddressBook().stream().filter(contactObj-> contactObj.getState().equals(state))
+					.filter(contactObj->(contactObj.getFirstName()+" "+ contactObj.getLastName())
+					.equals(name)).collect(Collectors.toList());
+		}
+		for(Contact contactObj : list) {
+			System.out.println(contactObj);
+		}
+	}
 	public static void main(String[] args) {
 		
 		AddressMain addBook = new AddressMain();
@@ -30,6 +53,8 @@ public static Map<String,AddressBook> addressBookMap;
 			System.out.println("3.Edit the contact details");
 			System.out.println("4.Delete the contact");
 			System.out.println("5.View All Contacts");
+			System.out.println("6.Search contact by City");
+			System.out.println("7.Search contact by state");
 			v = sc.nextInt();
 			sc.nextLine();
 			switch (v) {
@@ -100,6 +125,20 @@ public static Map<String,AddressBook> addressBookMap;
 					System.out.println("All contacts for city: "+entry.getKey()+" is: ");
 						entry.getValue().displayAllContacts();
 				}
+			case 6:
+				System.out.println("Enter conatct name to search ");
+				String cName = sc.nextLine();
+				System.out.println("Enter the city");
+				String c = sc.nextLine();
+				addBook.searchContactByCity(cName,c);
+				break;
+			case 7:
+				System.out.println("Enter contact name to search");
+				String person = sc.nextLine();
+				System.out.println("Enter the state");
+				String stat = sc.nextLine();
+				addBook.searchContactByCity(person,stat);
+				break;
 			default:
 				break;
 			}
