@@ -2,11 +2,12 @@ package address;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class AddressMain {
-	public static Map<String,AddressBook> addressBookMap;
+public class AddressMain extends AddressBook {
+public static Map<String,AddressBook> addressBookMap;
 	
 	public AddressMain() {
 		addressBookMap =new HashMap<>();
@@ -15,28 +16,29 @@ public class AddressMain {
 		AddressBook addaddressBook = new AddressBook();
 		addressBookMap.put(city,addaddressBook);
 	}
-	public ArrayList<Contact> addressBook = new ArrayList<Contact>();
+	public List<Contact> addressBook = new ArrayList<Contact>();
 	
 	public static void main(String[] args) {
 		
 		AddressMain addBook = new AddressMain();
-		System.out.println("Welcome to Address Book :Enter any key to proceed further");
+		System.out.println("Welcome to Address Book :Press Enter key to proceed further");
 		Scanner sc = new Scanner(System.in);
-		do{	
-		sc.nextLine();
+		int v;
+		while(true) {
 			System.out.println("1.Add a new Address Book");
 			System.out.println("2.Add a new Contact");
 			System.out.println("3.Edit the contact details");
 			System.out.println("4.Delete the contact");
 			System.out.println("5.View All Contacts");
-			int choice = sc.nextInt();
+			v = sc.nextInt();
 			sc.nextLine();
-			switch (choice) {
+			switch (v) {
 			//Create new Address book
 			case 1:
 				System.out.println("Enter the City name to create new Address Book");
 		        String City = sc.nextLine();
 		        addBook.addAddressBook(City);
+		        break;
 				//Add a contact
 			case 2:
 				System.out.println("Enter the details of person");
@@ -58,10 +60,10 @@ public class AddressMain {
 				sc.nextLine();
 				System.out.println("Enter the email");
 				String email = sc.nextLine();
-				Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+				Contact contactObj = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
 				for (Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {   
 					if(entry.getKey().equalsIgnoreCase(city)) {
-						entry.getValue().addContact(contact);
+						entry.getValue().addContact(contactObj);
 					}
 					else {
 						System.out.println("The addressbook does not exist, please create addressbook for that city");
@@ -95,17 +97,16 @@ public class AddressMain {
 				//View all contacts in specific address book
 			case 5:
 				for (Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {   
-					System.out.println("All contacts for city"+entry.getKey()+" is: ");
+					System.out.println("All contacts for city: "+entry.getKey()+" is: ");
 						entry.getValue().displayAllContacts();
 				}
 			default:
 				break;
 			}
-			System.out.println("Continue:(Y/N)?");
-		} while (sc.next().charAt(0) == 'Y');
+			
 		System.out.println("Thank You");
 		
 		}
 	}
 
-
+}
