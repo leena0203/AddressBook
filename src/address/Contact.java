@@ -66,10 +66,33 @@ public class Contact {
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
+		this.phoneNumber = phoneNumber;
 		this.emailId = emailId;
 		
 	}
+	@Override
+	public String toString() {
+		String details = "First Name : " + firstName + "\nLast Name : " + lastName + "\nAddress : " + address + "\nCity : " + city 
+							+ "\nState : " + state + "\nZIP : " + zip + "\nPhone Number : " + phoneNumber + "\nEmail ID : " + emailId + "\n";
+		return details;
+	}
+	
+	@Override
+	public boolean equals(Object object){
+	    boolean result = false;
+	    if((object == null) || (getClass() != object.getClass())){
+	        result = false;
+	    }
+	    else{
+	        Contact contactObj = (Contact)object;
+	        String name = this.firstName + this.lastName;
+	        result = (name).equals(contactObj.firstName + contactObj.lastName);
+	    }
+
+	    return result;
+	}
+}
 	
 	
 
-}
+

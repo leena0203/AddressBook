@@ -1,6 +1,7 @@
 package address;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,48 @@ public static Map<String,AddressBook> addressBookMap;
 			System.out.println(contactObj);
 		}
 	}
+	public void viewDataByCity(String city) {
+		List<Contact> list = new ArrayList<Contact>();
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getAddressBook().stream().filter(contactObj-> contactObj.getState().equals(city))
+					.collect(Collectors.toList());
+		}
+		for(Contact contactObj : list) {
+			System.out.println(contactObj);
+		}
+	}
+	public void viewDataByState(String state) {
+		List<Contact> list = new ArrayList<Contact>();
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getAddressBook().stream().filter(contactObj-> contactObj.getState().equals(state))
+					.collect(Collectors.toList());
+		}
+		for(Contact contactObj : list) {
+			System.out.println(contactObj);
+		}
+	}
+	public void countByCity(String city) {
+		long count = 0;
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			count = entry.getValue().getAddressBook().stream().filter(contactObj-> contactObj.getCity().equals(city))
+					.count();
+		}
+		System.out.println("count is "+count);
+	}
+	public void countByState(String state) {
+		long count = 0;
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			count = entry.getValue().getAddressBook().stream().filter(contactObj-> contactObj.getState().equals(state))
+					.count();
+		}
+		System.out.println("count is "+count);
+	}
+	public void sortByName() {
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			Collections.sort(entry.getValue().getAddressBook(),new SortByName());
+		}
+
+	}
 	public static void main(String[] args) {
 		
 		AddressMain addBook = new AddressMain();
@@ -55,6 +98,12 @@ public static Map<String,AddressBook> addressBookMap;
 			System.out.println("5.View All Contacts");
 			System.out.println("6.Search contact by City");
 			System.out.println("7.Search contact by state");
+			System.out.println("8.View contact by city");
+			System.out.println("9.View contact by state");
+			System.out.println("10.Count contact by city");
+			System.out.println("11.Count contact by state");
+			System.out.println("12.Sort contact by name");
+			
 			v = sc.nextInt();
 			sc.nextLine();
 			switch (v) {
@@ -139,6 +188,30 @@ public static Map<String,AddressBook> addressBookMap;
 				String stat = sc.nextLine();
 				addBook.searchContactByCity(person,stat);
 				break;
+			case 8:
+				System.out.println("Enter the city");
+				String s = sc.nextLine();
+				addBook.viewDataByCity(s);
+				break;
+			case 9:
+				System.out.println("Enter the state");
+				String stats = sc.nextLine();
+				addBook.viewDataByState(stats);
+				break;
+			case 10:
+				System.out.println("Enter the city");
+				String citi1 = sc.nextLine();
+				addBook.countByCity(citi1);
+				break;
+			case 11:
+				System.out.println("Enter the city");
+				String stat1 = sc.nextLine();
+				addBook.countByState(stat1);
+				break;
+			case 12:
+				addBook.sortByName();
+				break;
+				
 			default:
 				break;
 			}
