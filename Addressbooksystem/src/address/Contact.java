@@ -58,7 +58,7 @@ public class Contact {
 		this.emailId = emailId;
 	}
 	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
-			       long phoneNumber, String emailId) {
+			long phoneNumber, String emailId) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -68,31 +68,31 @@ public class Contact {
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.emailId = emailId;
-		
+
 	}
 	@Override
 	public String toString() {
 		String details = "First Name : " + firstName + "\nLast Name : " + lastName + "\nAddress : " + address + "\nCity : " + city 
-							+ "\nState : " + state + "\nZIP : " + zip + "\nPhone Number : " + phoneNumber + "\nEmail ID : " + emailId + "\n";
+				+ "\nState : " + state + "\nZIP : " + zip + "\nPhone Number : " + phoneNumber + "\nEmail ID : " + emailId + "\n";
 		return details;
 	}
-	
+
 	@Override
 	public boolean equals(Object object){
-	    boolean result = false;
-	    if((object == null) || (getClass() != object.getClass())){
-	        result = false;
-	    }
-	    else{
-	        Contact contactObj = (Contact)object;
-	        String name = this.firstName + this.lastName;
-	        result = (name).equals(contactObj.firstName + contactObj.lastName);
-	    }
+		boolean result = false;
+		if((object == null) || (getClass() != object.getClass())){
+			result = false;
+		}
+		else{
+			Contact contactObj = (Contact)object;
+			String name = this.firstName + this.lastName;
+			result = (name).equals(contactObj.firstName + contactObj.lastName);
+		}
 
-	    return result;
+		return result;
 	}
 }
-	
-	
+
+
 
 

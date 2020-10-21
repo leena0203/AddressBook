@@ -18,7 +18,7 @@ public class AddressBook {
 
 	public String city;
 
-	public AddressBook() {
+	public AddressBook(String city) {
 		this.city = city;
 	}
 
