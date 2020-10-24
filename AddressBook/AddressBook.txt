@@ -1,0 +1,18 @@
+First Name : Peter
+Last Name : James
+Address : 5th Street,kalbadia
+City : Panji
+State : Goa
+ZIP : 430921
+Phone Number : 9844328711
+Email ID : peterjames@bls.ni
+
+First Name : Jev
+Last Name : Kadim
+Address : Lolziva
+City : Panji
+State : Goa
+ZIP : 456783
+Phone Number : 9234123906
+Email ID : jev.12@bls.in
+
