@@ -182,6 +182,29 @@ public class AddressMain  {
 		}
 
 	}
+	
+	/**
+	 * reads data from addressbook.json file
+	 * 
+	 * @param ioService
+	 */
+	public void readDataGSON(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookService().readDataGSON();
+		}
+	}
+
+	/**
+	 * writes data to addressbook.json file
+	 * 
+	 * @param ioService
+	 */
+	public void writeDataGSON(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookService().writeDataGSON(addressBookMap);
+		}
+
+	}
 
 
 
@@ -192,7 +215,7 @@ public class AddressMain  {
 		while(true) {
 
 			System.out.println("1.to add person\n2.to edit contact\n3.to delete contact\n4.to view addbook\n5.to search contact in city\n6.to search contact in state\n7.to view data by city\n8.to view data in state\n9.to count contact from city"
-					+ "\n10.to count contact from state\n11.to sort the addressbook by name\n12.to sort the addressbook by zip\n13.Writing data to file\n14.Reading data from File\n15.Writing and Reading from CSVFile\n");
+					+ "\n10.to count contact from state\n11.to sort the addressbook by name\n12.to sort the addressbook by zip\n13.Writing data to file\n14.Reading data from File\n15.Writing and Reading from CSVFile\n16.Writing and Reading from JSonFile\n");
 			v = scanner.nextInt();
 			scanner.nextLine();
 			switch(v) {
@@ -284,7 +307,9 @@ public class AddressMain  {
 				new AddressBookService().readDataFromCSV();
 				break;
 			case 16:
-				System.exit(0);
+				addBookMain.writeDataGSON(IOService.FILE_IO);
+				addBookMain.readDataGSON(IOService.FILE_IO);
+				break;
 				
 			}
 		}
